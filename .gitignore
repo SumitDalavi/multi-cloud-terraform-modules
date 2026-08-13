@@ -1,2 +1,5 @@
 do-not-commit/
 .terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
