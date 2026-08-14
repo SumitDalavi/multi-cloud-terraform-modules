@@ -45,6 +45,8 @@ Public Terraform registries (`registry.terraform.io`) exist — but they're gene
 └── README.md
 ```
 
+> **💡 Cost Estimation:** Consider integrating [Infracost](https://www.infracost.io/) into CI to show cost impact of infrastructure changes in PRs — pairs well with the [FinOps Cost Dashboard](https://github.com/SumitDalavi/finops-cost-dashboard) repo.
+
 ## Decision Log
 
 | Decision | Rationale |
@@ -55,7 +57,7 @@ Public Terraform registries (`registry.terraform.io`) exist — but they're gene
 | Private networking by default | All databases and clusters default to private subnets; public access is opt-in |
 
 
-## ðŸ“‹ Prerequisites
+## 📋 Prerequisites
 
 | Tool | Version | Purpose |
 |------|---------|---------|
@@ -64,7 +66,7 @@ Public Terraform registries (`registry.terraform.io`) exist — but they're gene
 | [AWS CLI](https://aws.amazon.com/cli/) | >= 2.x | AWS provider (optional) |
 | [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) | >= 2.x | Azure provider (optional) |
 
-## ðŸš€ Step-by-Step Setup
+## 🚀 Step-by-Step Setup
 
 ```bash
 # 1. Clone the repository
@@ -79,7 +81,7 @@ terraform init
 terraform plan -var="cluster_name=my-eks" -var="region=us-west-2"
 ```
 
-## ðŸ§ª Usage & Demo
+## 🧪 Usage & Demo
 
 ### Using a module in your own project
 ```hcl
@@ -115,7 +117,7 @@ for dir in modules/aws/eks modules/aws/rds modules/aws/s3 modules/azure/aks modu
 done
 ```
 
-## âœ… Verification
+## ✅ Verification
 
 | Check | Command | Expected |
 |-------|---------|----------|
@@ -126,4 +128,9 @@ done
 
 ## 👨‍💻 Author
 
-*Built to demonstrate Terraform module authorship at the platform-engineering level, not just Terraform consumption.*
+**Sumit Dalavi** — Senior DevSecOps / Platform Engineer
+[GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
+
+---
+
+*Built with a focus on production-grade patterns, not toy demos.*
