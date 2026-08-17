@@ -1,5 +1,16 @@
 # Architecture: Multi-Cloud Terraform Module Registry
 
+## System Diagram
+The following Mermaid.js sequence diagram maps the core workflow and interactions:
+
+```mermaid
+sequenceDiagram
+    Dev->>Module: Source module
+Module->>AWS: Provision VPC
+Module->>Azure: Provision VNet
+```
+
+
 ## Design Philosophy
 Every module follows three principles: **secure by default**, **opinionated defaults**, and **testable**.
 
