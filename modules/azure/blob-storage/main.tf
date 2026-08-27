@@ -27,11 +27,23 @@ resource "azurerm_storage_container" "this" {
 }
 
 variable "storage_account_name" { type = string }
-variable "container_name"       { type = string; default = "data" }
-variable "resource_group_name"  { type = string }
-variable "location"             { type = string; default = "East US" }
-variable "replication_type"     { type = string; default = "GRS" }
-variable "tags"                 { type = map(string); default = {} }
+variable "container_name" {
+  type    = string
+  default = "data"
+}
+variable "resource_group_name" { type = string }
+variable "location" {
+  type    = string
+  default = "East US"
+}
+variable "replication_type" {
+  type    = string
+  default = "GRS"
+}
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
 
-output "storage_account_id"   { value = azurerm_storage_account.this.id }
+output "storage_account_id" { value = azurerm_storage_account.this.id }
 output "primary_blob_endpoint" { value = azurerm_storage_account.this.primary_blob_endpoint }

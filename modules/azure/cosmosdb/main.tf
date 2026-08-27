@@ -28,12 +28,27 @@ resource "azurerm_cosmosdb_account" "this" {
   tags = merge(var.tags, { ManagedBy = "terraform-module-registry" })
 }
 
-variable "account_name"        { type = string }
-variable "location"            { type = string; default = "East US" }
+variable "account_name" { type = string }
+variable "location" {
+  type    = string
+  default = "East US"
+}
 variable "resource_group_name" { type = string }
-variable "consistency_level"   { type = string; default = "Session" }
-variable "failover_location"   { type = string; default = null }
-variable "tags"                { type = map(string); default = {} }
+variable "consistency_level" {
+  type    = string
+  default = "Session"
+}
+variable "failover_location" {
+  type    = string
+  default = null
+}
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
 
-output "endpoint"    { value = azurerm_cosmosdb_account.this.endpoint }
-output "primary_key" { value = azurerm_cosmosdb_account.this.primary_key; sensitive = true }
+output "endpoint" { value = azurerm_cosmosdb_account.this.endpoint }
+output "primary_key" {
+  value     = azurerm_cosmosdb_account.this.primary_key
+  sensitive = true
+}

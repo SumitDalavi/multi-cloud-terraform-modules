@@ -33,9 +33,15 @@ resource "aws_s3_bucket_logging" "this" {
   target_prefix = "${var.bucket_name}/"
 }
 
-variable "bucket_name"       { type = string }
-variable "access_log_bucket" { type = string; default = null }
-variable "tags"              { type = map(string); default = {} }
+variable "bucket_name" { type = string }
+variable "access_log_bucket" {
+  type    = string
+  default = null
+}
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
 
-output "bucket_id"  { value = aws_s3_bucket.this.id }
+output "bucket_id" { value = aws_s3_bucket.this.id }
 output "bucket_arn" { value = aws_s3_bucket.this.arn }

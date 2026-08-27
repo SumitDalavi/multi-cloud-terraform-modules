@@ -30,15 +30,39 @@ resource "azurerm_kubernetes_cluster_node_pool" "user" {
   tags                  = var.tags
 }
 
-variable "cluster_name"        { type = string }
-variable "location"            { type = string; default = "East US" }
+variable "cluster_name" { type = string }
+variable "location" {
+  type    = string
+  default = "East US"
+}
 variable "resource_group_name" { type = string }
-variable "kubernetes_version"  { type = string; default = "1.28" }
-variable "system_node_count"   { type = number; default = 2 }
-variable "system_vm_size"      { type = string; default = "Standard_DS2_v2" }
-variable "user_node_count"     { type = number; default = 2 }
-variable "user_vm_size"        { type = string; default = "Standard_DS2_v2" }
-variable "tags"                { type = map(string); default = {} }
+variable "kubernetes_version" {
+  type    = string
+  default = "1.28"
+}
+variable "system_node_count" {
+  type    = number
+  default = 2
+}
+variable "system_vm_size" {
+  type    = string
+  default = "Standard_DS2_v2"
+}
+variable "user_node_count" {
+  type    = number
+  default = 2
+}
+variable "user_vm_size" {
+  type    = string
+  default = "Standard_DS2_v2"
+}
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
 
-output "cluster_id"  { value = azurerm_kubernetes_cluster.this.id }
-output "kube_config" { value = azurerm_kubernetes_cluster.this.kube_config_raw; sensitive = true }
+output "cluster_id" { value = azurerm_kubernetes_cluster.this.id }
+output "kube_config" {
+  value     = azurerm_kubernetes_cluster.this.kube_config_raw
+  sensitive = true
+}
