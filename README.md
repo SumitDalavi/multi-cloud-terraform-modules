@@ -1,6 +1,8 @@
 
 # Multi-Cloud Terraform Module Registry 🌍📦
 
+[![CI](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml)
+
 > **Maturity:** Functional Prototype
 > _Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage._
 
