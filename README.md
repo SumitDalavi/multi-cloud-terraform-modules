@@ -1,6 +1,9 @@
+> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
+
+
 # Multi-Cloud Terraform Module Registry 🌍📦
 
-> **Maturity:** Partial Prototype
+> **Maturity:** Functional Prototype
 > _Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage._
 
 ## The Problem
@@ -9,7 +12,7 @@
 
 ## The Solution
 
-A curated registry of production-grade Terraform modules covering the two most common cloud providers, with:
+A curated registry of robust Terraform modules covering the two most common cloud providers, with:
 
 | Module | AWS | Azure |
 |--------|-----|-------|
@@ -149,7 +152,7 @@ done
 
 ---
 
-*Built with a focus on production-grade patterns, not toy demos.*
+*Built with a focus on robust patterns, not toy demos.*
 
 ## CI & Reliability Updates (August 2026)
 
