@@ -12,11 +12,6 @@ func TestAwsEksModuleValidation(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../modules/aws/eks",
-		Vars: map[string]interface{}{
-			"cluster_name": "test-eks-cluster",
-			"vpc_id":       "vpc-12345678",
-			"subnet_ids":   []string{"subnet-aaa", "subnet-bbb"},
-		},
 		NoColor: true,
 	})
 
@@ -30,9 +25,6 @@ func TestAwsS3ModuleValidation(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../modules/aws/s3",
-		Vars: map[string]interface{}{
-			"bucket_name": "test-secure-bucket",
-		},
 		NoColor: true,
 	})
 
@@ -45,10 +37,6 @@ func TestAzureAksModuleValidation(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../modules/azure/aks",
-		Vars: map[string]interface{}{
-			"cluster_name":        "test-aks-cluster",
-			"resource_group_name": "test-rg",
-		},
 		NoColor: true,
 	})
 
