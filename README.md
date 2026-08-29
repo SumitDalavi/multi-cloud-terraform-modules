@@ -1,6 +1,7 @@
 # Multi-Cloud Terraform Module Registry 🌍📦
 
-> Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage — proving IaC ownership at the module-authoring level.
+> **Maturity:** Partial Prototype
+> _Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage._
 
 ## The Problem
 
@@ -46,6 +47,21 @@ Public Terraform registries (`registry.terraform.io`) exist — but they're gene
 ```
 
 > **💡 Cost Estimation:** Consider integrating [Infracost](https://www.infracost.io/) into CI to show cost impact of infrastructure changes in PRs — pairs well with the [FinOps Cost Dashboard](https://github.com/SumitDalavi/finops-cost-dashboard) repo.
+
+## Mock Boundaries (Honest Scope)
+
+| What | Status | Details |
+|---|---|---|
+| Terraform Code | **Real** | HCL code is fully valid and runnable. |
+| Terratest | **Real** | Go integration tests are fully implemented. |
+| Cloud Environments | **Mocked** | CI execution simulates plans without requiring live AWS/Azure credentials. |
+
+## 📚 Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) — System diagram and component details
+- [Runbook](docs/runbook.md) — Setup, commands, and expected outputs
+- [Decisions](docs/decisions.md) — ADRs for module design choices
+- [Changelog](docs/changelog.md) — Change history
 
 ## Decision Log
 
