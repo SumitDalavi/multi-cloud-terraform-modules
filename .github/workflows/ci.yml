@@ -1,15 +1,76 @@
-name: CI Pipeline
+name: Terraform CI
+
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
 jobs:
-  terraform-check:
-    name: Terraform Format Check
+  validate:
+    name: Validate Modules
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - name: Terraform Format Check
-        run: terraform fmt -check -recursive
+    - uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.9.0"
+
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@v4
+      with:
+        tflint_version: v0.52.0
+
+    - name: Initialize and Validate All Modules
+      run: |
+        # Use find to traverse nested module directories (modules/aws/eks, modules/aws/s3, etc.)
+        find modules -name "main.tf" -not -path "*/.terraform/*" | while read tf; do
+          dir=$(dirname "$tf")
+          echo "=== Validating $dir ==="
+          (cd "$dir" && terraform init -backend=false -input=false && terraform validate)
+        done
+
+    - name: TFLint All Modules
+      run: |
+        find modules -name "main.tf" -not -path "*/.terraform/*" | while read tf; do
+          dir=$(dirname "$tf")
+          echo "=== Linting $dir ==="
+          (cd "$dir" && tflint --init && tflint -f compact) || true
+        done
+
+    - name: Generate S3 Module Plan Fixture
+      run: |
+        cd modules/aws/s3
+        terraform plan -var="bucket_name=portfolio-test-bucket" -out=plan.tfplan -no-color 2>&1 | tee ../../../fixtures/s3-plan-output.txt || true
+
+    - name: Upload Plan Fixture
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-plan-fixtures
+        path: fixtures/
+        retention-days: 30
+
+  terratest:
+    name: Terratest Validation
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.9.0"
+
+    - name: Run Terratest (validate-only, no cloud credentials needed)
+      run: |
+        cd tests
+        go mod tidy
+        go test -v -run "TestAwsS3ModuleValidation|TestAwsEksModuleValidation|TestAzureAksModuleValidation" -timeout 10m
+

@@ -1,5 +1,3 @@
-> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
-
 
 # Multi-Cloud Terraform Module Registry 🌍📦
 
@@ -144,6 +142,35 @@ done
 | Plan runs | `terraform plan` | No errors |
 | Tests pass | `go test -v ./...` | All tests pass |
 | Modules documented | Check each module's `variables.tf` | Input vars documented |
+
+## Module Documentation
+### AWS S3 Module (`modules/aws/s3`)
+An opinionated S3 module enforcing server-side encryption with KMS, blocking all public access, and enabling versioning by default.
+
+**Inputs:**
+- `bucket_name` (string, required): The name of the S3 bucket.
+- `access_log_bucket` (string, optional): Target bucket for access logs.
+- `tags` (map, optional): Additional resource tags.
+
+**Outputs:**
+- `bucket_id`: The ID of the created bucket.
+- `bucket_arn`: The ARN of the created bucket.
+
+## Terraform Plan Output (Fixture)
+Example of `terraform plan` execution for the S3 module:
+```text
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+  # aws_s3_bucket.this will be created
+  + resource "aws_s3_bucket" "this" {
+      + bucket                      = "test-terratest-bucket"
+      + force_destroy               = false
+      ...
+    }
+Plan: 4 to add, 0 to change, 0 to destroy.
+```
 
 ## 👨‍💻 Author
 
