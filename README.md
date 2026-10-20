@@ -1,4 +1,3 @@
-
 # Multi-Cloud Terraform Module Registry 🌍📦
 
 [![Release](https://img.shields.io/github/v/release/SumitDalavi/multi-cloud-terraform-modules)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases)
@@ -63,30 +62,25 @@ Public Terraform registries (`registry.terraform.io`) exist — but they're gene
 | Terratest | **Real** | Go integration tests are fully implemented. |
 | Cloud Environments | **Mocked** | CI execution simulates plans without requiring live AWS/Azure credentials. |
 
-## 🚀 Progressive Credential Loading & Execution Tiers
+## 🛠️ Verification & Deployment Tiers
 
-This project implements **Progressive Credential Loading (PCL)**, allowing it to run immediately out-of-the-box without external dependencies while seamlessly upgrading as credentials are provided.
+These reusable infrastructure modules support progressive adoption from local validation to live multi-cloud provisioning.
 
-### Tier 1: Zero-Config Mock Mode (Default)
-Ideal for CI, testing, and rapid local evaluation.
-- **Execution:** Run with default configuration (`cp .env.example .env`). Zero API keys, databases, or cloud credentials required.
-- **Fallback Behavior:** In-memory caches, deterministic offline heuristics, mock vector embeddings, and local mock storage are automatically used.
-- **Health Verification:** Endpoints report `{"mode": "mock"}` for unconfigured dependencies.
+### Tier 1: Offline Linting & Static Validation (Default)
+Validate module syntax, formatting, and security policies without cloud credentials.
+- **Execution:** `terraform fmt -check`, `terraform validate`, `tflint`.
+- **Behavior:** Validates HCL configuration and input/output contracts locally without initializing remote state.
+- **Zero Cloud Footprint:** Zero AWS, Azure, or GCP credentials required.
 
-### Tier 2: Local Development with Live Services
-Connect specific external services while keeping others mocked.
-- **Execution:** Provide credentials in `.env` for the services you want active (e.g., `AWS_REGION, GOOGLE_PROJECT, ARM_SUBSCRIPTION_ID`).
-- **Progressive Upgrade:** The runtime inspects environment variables on boot and dynamically promotes only configured modules to live mode.
-- **Safe Fallback:** Any missing credentials automatically remain on mock fallbacks with no crashes or missing service errors.
+### Tier 2: Terratest Integration Testing
+Run automated end-to-end integration tests using isolated sandbox credentials.
+- **Execution:** Supply credentials via `.env` or cloud CLI and run `go test -v ./tests/...`.
+- **Behavior:** Dynamically provisions ephemeral resources, runs validation assertions, and destroys resources.
 
-### Tier 3: Production Hardened
-Enterprise deployment with production-grade backends, security scans, and container distributions.
-- **OCI Container Image:** Pre-built, multi-arch image on GitHub Container Registry:
-  ```bash
-  docker pull ghcr.io/sumitdalavi/multi-cloud-terraform-modules:v0.2.0
-  ```
-- **Production Orchestration:** Mount secrets via Kubernetes Secrets or cloud secret managers with atomic config reload support.
-- **Release Verification:** Checksums and SPDX SBOM available on [GitHub Releases](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases).
+### Tier 3: Production Infrastructure Provisioning
+Consume standardized modules across production workspaces and GitOps pipelines.
+- **Distribution:** Tagged release tarballs with verified checksums and SPDX SBOM available on [GitHub Releases](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases).
+
 
 ## 📚 Documentation
 
