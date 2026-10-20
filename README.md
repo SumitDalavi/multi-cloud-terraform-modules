@@ -1,10 +1,11 @@
 # Multi-Cloud Terraform Module Registry 🌍📦
 
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/multi-cloud-terraform-modules)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases)
+[![CI Pipeline](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/multi-cloud-terraform-modules?color=0969da&label=release&logo=github)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases)
 [![Release Workflow](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/release.yml)
-
-
-[![CI](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/actions/workflows/ci.yml)
+[![Terraform](https://img.shields.io/badge/Terraform-1.6+-844FBA?logo=terraform&logoColor=white)](https://www.terraform.io)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases/tag/v0.2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **Maturity:** Functional Prototype
 > _Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage._
@@ -81,7 +82,6 @@ Run automated end-to-end integration tests using isolated sandbox credentials.
 Consume standardized modules across production workspaces and GitOps pipelines.
 - **Distribution:** Tagged release tarballs with verified checksums and SPDX SBOM available on [GitHub Releases](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases).
 
-
 ## 📚 Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) — System diagram and component details
@@ -97,7 +97,6 @@ Consume standardized modules across production workspaces and GitOps pipelines.
 | Terratest over `terraform test` | Terratest is the industry standard for module testing; Go test framework provides richer assertions |
 | Encryption enabled by default | Meets SOC2/ISO27001 baseline without requiring consumers to configure it |
 | Private networking by default | All databases and clusters default to private subnets; public access is opt-in |
-
 
 ## 📋 Prerequisites
 
