@@ -7,8 +7,7 @@
 [![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/multi-cloud-terraform-modules/releases/tag/v0.2.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **Maturity:** Functional Prototype
-> _Opinionated, secure-by-default Terraform modules for AWS and Azure — with Terratest coverage._
+> Opinionated, secure-by-default Terraform modules for AWS and Azure — with comprehensive Terratest validation.
 
 ## The Problem
 
